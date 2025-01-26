@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/taxstrat/static/css/main.e6c13ad2.css",
+    "main.js": "/taxstrat/static/js/main.629d9977.js",
+    "static/js/488.63ea5034.chunk.js": "/taxstrat/static/js/488.63ea5034.chunk.js",
+    "index.html": "/taxstrat/index.html",
+    "main.e6c13ad2.css.map": "/taxstrat/static/css/main.e6c13ad2.css.map",
+    "main.629d9977.js.map": "/taxstrat/static/js/main.629d9977.js.map",
+    "488.63ea5034.chunk.js.map": "/taxstrat/static/js/488.63ea5034.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.629d9977.js"
+  ]
+}

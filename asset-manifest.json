@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/taxstrat/static/css/main.b76fd2b5.css",
-    "main.js": "/taxstrat/static/js/main.96701a63.js",
+    "main.js": "/taxstrat/static/js/main.1140ea06.js",
     "static/js/488.63ea5034.chunk.js": "/taxstrat/static/js/488.63ea5034.chunk.js",
     "index.html": "/taxstrat/index.html",
     "main.b76fd2b5.css.map": "/taxstrat/static/css/main.b76fd2b5.css.map",
-    "main.96701a63.js.map": "/taxstrat/static/js/main.96701a63.js.map",
+    "main.1140ea06.js.map": "/taxstrat/static/js/main.1140ea06.js.map",
     "488.63ea5034.chunk.js.map": "/taxstrat/static/js/488.63ea5034.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b76fd2b5.css",
-    "static/js/main.96701a63.js"
+    "static/js/main.1140ea06.js"
   ]
 }

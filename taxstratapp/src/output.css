@@ -1,0 +1,18 @@
+/*! tailwindcss v4.0.0 | MIT License | https://tailwindcss.com */
+@tailwind base;
+@tailwind components;
+.block {
+  display: block;
+}
+.w-full {
+  width: 100%;
+}
+.border {
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+}
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}

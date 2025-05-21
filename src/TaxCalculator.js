@@ -80,8 +80,8 @@ const TaxCalculator = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-blue-50 p-6">
-      <div className="w-full max-w-3xl bg-white shadow-lg rounded-lg p-6">
+    <div className="flex justify-center items-center min-h-screen p-6">
+      <div className="calculator-card w-full max-w-3xl p-6">
         <h1 className="text-3xl font-bold text-blue-600 text-center mb-6">
           Tax Strategy Calculator
         </h1>
@@ -230,10 +230,7 @@ const TaxCalculator = () => {
         </div>
 
         {/* Calculate Tax Button */}
-        <button
-          onClick={calculateTax}
-          className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition"
-        >
+        <button onClick={calculateTax} className="primary-button">
           Calculate Tax
         </button>
 

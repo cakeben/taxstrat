@@ -27,26 +27,52 @@ const TaxCalculator = () => {
     const eisReliefRate = 0.3;
     const seisReliefRate = 0.5;
 
-    // Income Tax Calculation
-    let taxableSalary = Math.max(0, salary - personalAllowance);
-    let incomeTax = taxableSalary * 0.2; // Example: Assume flat 20% rate on taxable income
+    // Income Tax Calculation with UK progressive bands
+    // Personal allowance is reduced by £1 for every £2 over £100k of total income
+    let adjustedAllowance = personalAllowance;
+    const totalIncomePreTax = salary + dividends;
+    if (totalIncomePreTax > 100000) {
+      const reduction = Math.floor((totalIncomePreTax - 100000) / 2);
+      adjustedAllowance = Math.max(0, adjustedAllowance - reduction);
+    }
 
-    // Dividend Tax Calculation
-    let taxableDividends = Math.max(0, dividends - dividendAllowance);
+    const allowanceUsedOnSalary = Math.min(adjustedAllowance, salary);
+    const remainingAllowance = Math.max(0, adjustedAllowance - allowanceUsedOnSalary);
+
+    let taxableSalary = Math.max(0, salary - adjustedAllowance);
+    let incomeTax = 0;
+    const basicRateUpper = 50270;
+    const higherRateUpper = 125140;
+
+    if (taxableSalary <= basicRateUpper - adjustedAllowance) {
+      incomeTax = taxableSalary * 0.2;
+    } else if (taxableSalary <= higherRateUpper - adjustedAllowance) {
+      incomeTax = (basicRateUpper - adjustedAllowance) * 0.2 +
+        (taxableSalary - (basicRateUpper - adjustedAllowance)) * 0.4;
+    } else {
+      incomeTax = (basicRateUpper - adjustedAllowance) * 0.2 +
+        (higherRateUpper - basicRateUpper) * 0.4 +
+        (taxableSalary - (higherRateUpper - adjustedAllowance)) * 0.45;
+    }
+
+    // Dividend Tax Calculation - apply remaining allowance and rate bands
+    let taxableDividends = Math.max(0, dividends - dividendAllowance - remainingAllowance);
     let dividendTax = 0;
     if (taxableDividends > 0) {
-      const basicRateLimit = Math.max(0, 37700 - taxableSalary);
-      if (taxableDividends <= basicRateLimit) {
+      const basicRateSpace = Math.max(0, basicRateUpper - adjustedAllowance - taxableSalary);
+      const higherRateSpace = Math.max(0, higherRateUpper - basicRateUpper - Math.max(0, taxableSalary - (basicRateUpper - adjustedAllowance)));
+
+      if (taxableDividends <= basicRateSpace) {
         dividendTax = taxableDividends * dividendRates[0];
-      } else if (taxableDividends <= 125140) {
+      } else if (taxableDividends <= basicRateSpace + higherRateSpace) {
         dividendTax =
-          basicRateLimit * dividendRates[0] +
-          (taxableDividends - basicRateLimit) * dividendRates[1];
+          basicRateSpace * dividendRates[0] +
+          (taxableDividends - basicRateSpace) * dividendRates[1];
       } else {
         dividendTax =
-          basicRateLimit * dividendRates[0] +
-          (125140 - basicRateLimit) * dividendRates[1] +
-          (taxableDividends - 125140) * dividendRates[2];
+          basicRateSpace * dividendRates[0] +
+          higherRateSpace * dividendRates[1] +
+          (taxableDividends - basicRateSpace - higherRateSpace) * dividendRates[2];
       }
     }
     incomeTax += dividendTax;
@@ -100,7 +126,7 @@ const TaxCalculator = () => {
           </h2>
           <div>
             <label className="block text-sm font-medium text-gray-600 mb-2">
-              Director's Salary (£)
+              Salary (£)
             </label>
             <div className="flex items-center space-x-4">
               <input

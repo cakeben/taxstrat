@@ -147,6 +147,15 @@ const TaxCalculator = () => {
             <p className="text-sm text-gray-500 mt-2">
               Assumes a tax-free personal allowance of £12,570.
             </p>
+            <ul className="text-sm text-gray-500 list-disc pl-5 mt-2">
+              <li>20% basic rate up to £50,270.</li>
+              <li>40% rate from £50,271 to £125,140.</li>
+              <li>45% on income above £125,140.</li>
+              <li>
+                Example: £60,000 salary pays 20% on £37,700 after the allowance
+                and 40% on the rest.
+              </li>
+            </ul>
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-600 mb-2">
@@ -171,6 +180,14 @@ const TaxCalculator = () => {
             <p className="text-sm text-gray-500 mt-2">
               £500 dividend allowance applies. Tax rates vary by income band.
             </p>
+            <ul className="text-sm text-gray-500 list-disc pl-5 mt-2">
+              <li>No tax on the first £500 of dividends.</li>
+              <li>8.75% basic rate, 33.75% higher rate, 39.35% additional rate.</li>
+              <li>
+                Example: £2,000 of dividends for a basic rate taxpayer results in
+                £1,500 taxed at 8.75% (£131.25).
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -202,6 +219,14 @@ const TaxCalculator = () => {
             <p className="text-sm text-gray-500 mt-2">
               Annual exempt amount of £3,000 applies.
             </p>
+            <ul className="text-sm text-gray-500 list-disc pl-5 mt-2">
+              <li>No tax on the first £3,000 of gains.</li>
+              <li>Taxed at 18% or 24% depending on the checkbox above.</li>
+              <li>
+                Example: £10,000 of gains taxed at 18% means £7,000 is taxed,
+                creating a bill of £1,260.
+              </li>
+            </ul>
             <label className="inline-flex items-center mt-3">
               <input
                 type="checkbox"
@@ -246,10 +271,10 @@ const TaxCalculator = () => {
               </div>
               <p className="text-sm text-gray-500 mt-2">
                 {relief.label === "VCT Investments (£)"
-                  ? "30% relief on investments up to £200,000 annually. Relief applies to income tax."
+                  ? "30% relief on investments up to £200,000 each year. Example: invest £10,000 and reduce income tax by £3,000."
                   : relief.label === "EIS Investments (£)"
-                  ? "30% relief on investments up to £1,000,000 annually. Relief applies to capital gains tax."
-                  : "50% relief on investments up to £100,000 annually. Relief applies to capital gains tax."}
+                  ? "30% relief on investments up to £1,000,000 each year. Example: invest £5,000 and offset £1,500 of capital gains tax."
+                  : "50% relief on investments up to £100,000 each year. Example: invest £20,000 and save £10,000 of capital gains tax."}
               </p>
             </div>
           ))}

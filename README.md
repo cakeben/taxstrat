@@ -41,6 +41,10 @@ npm run build
 
 This command bundles the app and outputs the optimized files to the `build` directory. The files from this directory can be served on any static hosting provider.
 
+## Deployment
+
+Pushes to the `main` branch automatically build and deploy the latest version of the app to the `gh-pages` branch using GitHub Actions. The workflow installs dependencies, runs the production build, and publishes the contents of the `build/` directory with [peaceiris/actions-gh-pages](https://github.com/peaceiris/actions-gh-pages).
+
 ## Design Guidelines & Coding Standards
 
 - Follows React best practices with functional components and hooks.

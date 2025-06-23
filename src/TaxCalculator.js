@@ -1,4 +1,15 @@
 import React, { useState } from "react";
+import {
+  Box,
+  Card,
+  CardContent,
+  Typography,
+  Slider,
+  TextField,
+  Button,
+  Checkbox,
+  FormControlLabel,
+} from "@mui/material";
 
 const TaxCalculator = () => {
   const [salary, setSalary] = useState(12570);
@@ -106,48 +117,43 @@ const TaxCalculator = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen p-6">
-      <div className="calculator-card w-full max-w-3xl p-6">
-        <h1 className="text-3xl font-bold text-blue-600 text-center mb-6">
-          Tax Strategy Calculator
-        </h1>
-        <p className="text-center text-sm text-gray-600 mb-6">
-          This calculator helps you understand your total tax liability and
-          effective tax rate based on your salary, dividends, crypto gains, and
-          investments. It calculates income tax and capital gains tax, applying
-          appropriate reliefs (e.g., VCT for income tax and EIS/SEIS for capital
-          gains tax).
-        </p>
+    <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh" p={3}>
+      <Card sx={{ width: "100%", maxWidth: 700 }}>
+        <CardContent>
+          <Typography variant="h4" align="center" gutterBottom>
+            Tax Strategy Calculator
+          </Typography>
+          <Typography variant="body2" align="center" color="text.secondary" gutterBottom>
+            This calculator helps you understand your total tax liability and effective tax rate based on your salary,
+            dividends, crypto gains, and investments. It calculates income tax and capital gains tax, applying
+            appropriate reliefs (e.g., VCT for income tax and EIS/SEIS for capital gains tax).
+          </Typography>
 
         {/* Income Details Section */}
-        <div className="bg-gray-100 rounded-lg p-4 mb-6">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">
+        <Box bgcolor="grey.100" p={2} borderRadius={1} mb={3}>
+          <Typography variant="h6" gutterBottom>
             Income Details
-          </h2>
-          <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">
-              Salary (£)
-            </label>
-            <div className="flex items-center space-x-4">
-              <input
-                type="range"
-                min="0"
-                max="100000"
-                value={salary}
-                onChange={(e) => setSalary(Number(e.target.value))}
-                className="w-full h-2 bg-blue-300 rounded-lg appearance-none cursor-pointer"
-              />
-              <input
-                type="number"
-                value={salary}
-                onChange={(e) => setSalary(Number(e.target.value))}
-                className="w-24 p-2 border rounded-lg text-right"
-              />
-            </div>
-            <p className="text-sm text-gray-500 mt-2">
+          </Typography>
+          <Box mb={2}>
+            <Typography variant="subtitle2">Salary (£)</Typography>
+            <Slider
+              value={salary}
+              onChange={(_, v) => setSalary(v)}
+              min={0}
+              max={100000}
+              valueLabelDisplay="auto"
+            />
+            <TextField
+              type="number"
+              value={salary}
+              onChange={(e) => setSalary(Number(e.target.value))}
+              size="small"
+              fullWidth
+            />
+            <Typography variant="body2" color="text.secondary" mt={1}>
               Assumes a tax-free personal allowance of £12,570.
-            </p>
-            <ul className="text-sm text-gray-500 list-disc pl-5 mt-2">
+            </Typography>
+            <ul style={{ marginLeft: "1rem" }}>
               <li>20% basic rate up to £50,270.</li>
               <li>40% rate from £50,271 to £125,140.</li>
               <li>45% on income above £125,140.</li>
@@ -156,31 +162,27 @@ const TaxCalculator = () => {
                 and 40% on the rest.
               </li>
             </ul>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">
-              Dividends (£)
-            </label>
-            <div className="flex items-center space-x-4">
-              <input
-                type="range"
-                min="0"
-                max="1000000"
-                value={dividends}
-                onChange={(e) => setDividends(Number(e.target.value))}
-                className="w-full h-2 bg-blue-300 rounded-lg appearance-none cursor-pointer"
-              />
-              <input
-                type="number"
-                value={dividends}
-                onChange={(e) => setDividends(Number(e.target.value))}
-                className="w-24 p-2 border rounded-lg text-right"
-              />
-            </div>
-            <p className="text-sm text-gray-500 mt-2">
+          </Box>
+          <Box mb={2}>
+            <Typography variant="subtitle2">Dividends (£)</Typography>
+            <Slider
+              value={dividends}
+              onChange={(_, v) => setDividends(v)}
+              min={0}
+              max={1000000}
+              valueLabelDisplay="auto"
+            />
+            <TextField
+              type="number"
+              value={dividends}
+              onChange={(e) => setDividends(Number(e.target.value))}
+              size="small"
+              fullWidth
+            />
+            <Typography variant="body2" color="text.secondary" mt={1}>
               £500 dividend allowance applies. Tax rates vary by income band.
-            </p>
-            <ul className="text-sm text-gray-500 list-disc pl-5 mt-2">
+            </Typography>
+            <ul style={{ marginLeft: "1rem" }}>
               <li>No tax on the first £500 of dividends.</li>
               <li>8.75% basic rate, 33.75% higher rate, 39.35% additional rate.</li>
               <li>
@@ -188,38 +190,34 @@ const TaxCalculator = () => {
                 £1,500 taxed at 8.75% (£131.25).
               </li>
             </ul>
-          </div>
-        </div>
+          </Box>
+        </Box>
 
         {/* Investment Gains Section */}
-        <div className="bg-gray-100 rounded-lg p-4 mb-6">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">
+        <Box bgcolor="grey.100" p={2} borderRadius={1} mb={3}>
+          <Typography variant="h6" gutterBottom>
             Investment Gains
-          </h2>
-          <div>
-            <label className="block text-sm font-medium text-gray-600 mb-2">
-              Crypto Gains (£)
-            </label>
-            <div className="flex items-center space-x-4">
-              <input
-                type="range"
-                min="0"
-                max="1000000"
-                value={cryptoGains}
-                onChange={(e) => setCryptoGains(Number(e.target.value))}
-                className="w-full h-2 bg-blue-300 rounded-lg appearance-none cursor-pointer"
-              />
-              <input
-                type="number"
-                value={cryptoGains}
-                onChange={(e) => setCryptoGains(Number(e.target.value))}
-                className="w-24 p-2 border rounded-lg text-right"
-              />
-            </div>
-            <p className="text-sm text-gray-500 mt-2">
+          </Typography>
+          <Box mb={2}>
+            <Typography variant="subtitle2">Crypto Gains (£)</Typography>
+            <Slider
+              value={cryptoGains}
+              onChange={(_, v) => setCryptoGains(v)}
+              min={0}
+              max={1000000}
+              valueLabelDisplay="auto"
+            />
+            <TextField
+              type="number"
+              value={cryptoGains}
+              onChange={(e) => setCryptoGains(Number(e.target.value))}
+              size="small"
+              fullWidth
+            />
+            <Typography variant="body2" color="text.secondary" mt={1}>
               Annual exempt amount of £3,000 applies.
-            </p>
-            <ul className="text-sm text-gray-500 list-disc pl-5 mt-2">
+            </Typography>
+            <ul style={{ marginLeft: "1rem" }}>
               <li>No tax on the first £3,000 of gains.</li>
               <li>Taxed at 18% or 24% depending on the checkbox above.</li>
               <li>
@@ -227,84 +225,85 @@ const TaxCalculator = () => {
                 creating a bill of £1,260.
               </li>
             </ul>
-            <label className="inline-flex items-center mt-3">
-              <input
-                type="checkbox"
-                className="form-checkbox text-blue-600"
-                checked={isHigherCryptoTax}
-                onChange={() => setIsHigherCryptoTax(!isHigherCryptoTax)}
-              />
-              <span className="ml-2 text-gray-700">
-                Apply higher tax rate (24%). Unchecked applies lower rate (18%).
-              </span>
-            </label>
-          </div>
-        </div>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={isHigherCryptoTax}
+                  onChange={() => setIsHigherCryptoTax(!isHigherCryptoTax)}
+                  color="primary"
+                />
+              }
+              label="Apply higher tax rate (24%). Unchecked applies lower rate (18%)."
+              sx={{ mt: 1 }}
+            />
+          </Box>
+        </Box>
 
         {/* Tax Reliefs Section */}
-        <div className="bg-gray-100 rounded-lg p-4 mb-6">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">Tax Reliefs</h2>
+        <Box bgcolor="grey.100" p={2} borderRadius={1} mb={3}>
+          <Typography variant="h6" gutterBottom>
+            Tax Reliefs
+          </Typography>
           {[
             { label: "VCT Investments (£)", value: vct, setter: setVct, max: 200000 },
             { label: "EIS Investments (£)", value: eis, setter: setEis, max: 1000000 },
             { label: "SEIS Investments (£)", value: seis, setter: setSeis, max: 100000 },
           ].map((relief, idx) => (
-            <div key={idx}>
-              <label className="block text-sm font-medium text-gray-600 mb-2">
-                {relief.label}
-              </label>
-              <div className="flex items-center space-x-4">
-                <input
-                  type="range"
-                  min="0"
-                  max={relief.max}
-                  value={relief.value}
-                  onChange={(e) => relief.setter(Number(e.target.value))}
-                  className="w-full h-2 bg-blue-300 rounded-lg appearance-none cursor-pointer"
-                />
-                <input
-                  type="number"
-                  value={relief.value}
-                  onChange={(e) => relief.setter(Number(e.target.value))}
-                  className="w-24 p-2 border rounded-lg text-right"
-                />
-              </div>
-              <p className="text-sm text-gray-500 mt-2">
+            <Box key={idx} mb={2}>
+              <Typography variant="subtitle2">{relief.label}</Typography>
+              <Slider
+                value={relief.value}
+                onChange={(_, v) => relief.setter(v)}
+                min={0}
+                max={relief.max}
+                valueLabelDisplay="auto"
+              />
+              <TextField
+                type="number"
+                value={relief.value}
+                onChange={(e) => relief.setter(Number(e.target.value))}
+                size="small"
+                fullWidth
+              />
+              <Typography variant="body2" color="text.secondary" mt={1}>
                 {relief.label === "VCT Investments (£)"
                   ? "30% relief on investments up to £200,000 each year. Example: invest £10,000 and reduce income tax by £3,000."
                   : relief.label === "EIS Investments (£)"
                   ? "30% relief on investments up to £1,000,000 each year. Example: invest £5,000 and offset £1,500 of capital gains tax."
                   : "50% relief on investments up to £100,000 each year. Example: invest £20,000 and save £10,000 of capital gains tax."}
-              </p>
-            </div>
+              </Typography>
+            </Box>
           ))}
-        </div>
+        </Box>
 
         {/* Calculate Tax Button */}
-        <button onClick={calculateTax} className="primary-button">
+        <Button variant="contained" color="primary" fullWidth onClick={calculateTax}>
           Calculate Tax
-        </button>
+        </Button>
 
         {/* Results Section */}
         {taxBill !== null && (
-          <div className="mt-6 bg-gray-100 p-4 rounded-lg">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">Results</h2>
-            <p className="text-lg">
+          <Box mt={3} bgcolor="grey.100" p={2} borderRadius={1}>
+            <Typography variant="h6" gutterBottom>
+              Results
+            </Typography>
+            <Typography>
               <strong>Total Tax Bill:</strong> £{taxBill}
-            </p>
-            <p className="text-lg">
+            </Typography>
+            <Typography>
               <strong>Effective Tax Rate:</strong> {effectiveTaxRate}%
-            </p>
-            <div className="mt-4">
-              <h3 className="text-lg font-semibold text-gray-800">Tax Breakdown:</h3>
-              <p>Income Tax: £{taxBreakdown.incomeTax}</p>
-              <p>Capital Gains Tax: £{taxBreakdown.capitalGainsTax}</p>
-              <p>Total Reliefs: £{taxBreakdown.totalReliefs}</p>
-            </div>
-          </div>
+            </Typography>
+            <Box mt={1}>
+              <Typography variant="subtitle2">Tax Breakdown:</Typography>
+              <Typography>Income Tax: £{taxBreakdown.incomeTax}</Typography>
+              <Typography>Capital Gains Tax: £{taxBreakdown.capitalGainsTax}</Typography>
+              <Typography>Total Reliefs: £{taxBreakdown.totalReliefs}</Typography>
+            </Box>
+          </Box>
         )}
-      </div>
-    </div>
+        </CardContent>
+      </Card>
+    </Box>
   );
 };
 

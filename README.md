@@ -33,13 +33,13 @@ This starts a local server and opens the app in your default browser. Any saved 
 
 ## Build Static Assets
 
-To create a production build of the static files:
+Create a production build using the standard Create React App workflow:
 
 ```bash
 npm run build
 ```
 
-This command bundles the app and outputs the optimized files to the `build` directory. The files from this directory can be served on any static hosting provider.
+The command runs `react-scripts build` and outputs the optimized files to the `build/` directory.
 
 ## Deployment
 

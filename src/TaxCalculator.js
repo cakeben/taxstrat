@@ -117,7 +117,17 @@ const TaxCalculator = () => {
   };
 
   return (
-    <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh" p={3}>
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      sx={{
+        minHeight: { xs: 'calc(100vh - 56px)', sm: 'calc(100vh - 64px)' },
+        py: { xs: 4, md: 6 },
+        px: { xs: 2, sm: 3 },
+        width: '100%',
+      }}
+    >
       <Card sx={{ width: "100%", maxWidth: 700 }}>
         <CardContent>
           <Typography variant="h4" align="center" gutterBottom>
